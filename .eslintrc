@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "quotes": [2, "single"],
+    "no-console": 0,
+    "no-unused-vars": 0,
+    "semi": 1,
+    "no-class-assign": 0,
+    "no-mixed-spaces-and-tabs": 1,
+    "react/display-name": 0,
+    "react/prop-types": 0,
+    "react/no-multi-comp": 0,
+    "react/jsx-no-bind": [0, {
+        "ignoreRefs": false,
+        "allowArrowFunctions": false,
+        "allowBind": false
+    }]
+  }
+}
