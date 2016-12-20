@@ -1,5 +1,5 @@
 import React from 'react';
-import BsModal from './BsModal';
+import BsModal from '../BsModal';
 
 const GreetModal = ({ title, onExited }) => (
 	<BsModal title={title} onExited={onExited}>
