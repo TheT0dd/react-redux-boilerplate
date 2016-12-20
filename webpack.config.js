@@ -36,7 +36,8 @@ const common = merge(
 			//publicPath: ''
 		},
 		resolve: {
-			extensions: ['', '.js', '.jsx']
+			extensions: ['', '.js', '.jsx'],
+			root: [ __dirname, PATHS.app ]
 		}
 	},
 	parts.provide({
@@ -83,7 +84,7 @@ switch (TARGET) {
 				name: 'vendor',
 				entries: ['react', 'react-dom']
 			}),
-			parts.setupCSS(PATHS.style),
+			parts.setupCSS(PATHS.style, PATHS.app),
 			parts.minify(),
 			parts.extractCSS(PATHS.style)
 		);
@@ -106,7 +107,7 @@ switch (TARGET) {
 					style: PATHS.style
 				}
 			},
-			parts.setupCSS(PATHS.style),
+			parts.setupCSS(PATHS.style, PATHS.app),
 			parts.devServer({
 				// Customize host/port here if needed
 				host: process.env.HOST,

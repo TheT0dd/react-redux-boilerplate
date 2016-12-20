@@ -142,14 +142,21 @@ exports.provide = function(paramsObj) {
 	};
 };
 
-exports.setupCSS = function(paths) {
+exports.setupCSS = function(globalIncludes, moduleIncludes) {
 	return {
 		module: {
 			loaders: [
+				// Loader for tradional, global less files (i.e. bootstrap)
 				{
 					test: /\.less$/,
 					loader: 'style-loader!css-loader!less-loader',
-					include: paths
+					include: globalIncludes
+				},
+				// Loader for css-module files (usuallyy exist inside component folders)
+				{
+					test: /\.less$/,
+					loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!less-loader',
+					include: moduleIncludes
 				}
 			]
 		}
