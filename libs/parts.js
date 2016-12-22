@@ -155,7 +155,7 @@ exports.setupCSS = function(globalIncludes, moduleIncludes) {
 				// Loader for css-module files (usuallyy exist inside component folders)
 				{
 					test: /\.less$/,
-					loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!less-loader',
+					loader: 'isomorphic-style-loader!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!less-loader',
 					include: moduleIncludes
 				}
 			]

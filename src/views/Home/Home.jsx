@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
 import { showModal, hideModal } from '../../actions';
 
+import MyButton from '../../components/MyButton';
+
 let Home = ({ dispatch }) => {
 
 	const handleShow = () => {
@@ -32,6 +34,9 @@ let Home = ({ dispatch }) => {
 				<Button bsStyle="default" onClick={handleShow}>
 					Show Greet Modal
 				</Button>
+			</p>
+			<p>
+				<MyButton />
 			</p>
 		</Jumbotron>
 	);

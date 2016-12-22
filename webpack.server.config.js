@@ -19,6 +19,8 @@ module.exports = merge(
 
 		target: 'node',
 
+		debug: true,
+
 		// keep node_module paths out of the bundle
 		externals: fs.readdirSync(path.resolve(__dirname, 'node_modules')).
 			concat([
@@ -43,13 +45,10 @@ module.exports = merge(
 					test: /\.(js|jsx)$/,
 					exclude: /node_modules/,
 					loader: 'babel-loader?presets[]=es2015&presets[]=react'
-				},
-				{
-					test: /\.less$/,
-					loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!less-loader',
-					include: PATHS.app
 				}
 			]
 		}
-	}
+	},
+
+	parts.setupCSS(PATHS.style, PATHS.app)
 );
