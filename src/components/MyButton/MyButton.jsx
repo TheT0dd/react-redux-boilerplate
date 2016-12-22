@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles from 'decorators/withStyles';
+import { withStyles } from 'helpers/isl';
 import s from './MyButton.less';
 
 const MyButton = () => (

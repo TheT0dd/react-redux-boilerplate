@@ -4,18 +4,11 @@ import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import App from './App';
 import Routes from './components/Routes/index';
-import configureStore from './configureStore';
+import { configureStore } from './helpers/redux';
+import { insertCss } from './helpers/isl';
 
 const context = {
-	// Enables critical path CSS rendering
-	// https://github.com/kriasoft/isomorphic-style-loader
-	insertCss: (...styles) => {
-		// eslint-disable-next-line no-underscore-dangle
-		const removeCss = styles.map(x => x._insertCss());
-		return () => {
-			removeCss.forEach(f => f());
-		};
-	},
+	insertCss,
 	// Initialize a new Redux store
 	store: configureStore()
 };
