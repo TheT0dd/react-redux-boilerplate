@@ -4,6 +4,7 @@
     "react",
     "stage-0"
   ],
+  "plugins": [],
   "env": {
     "start": {
       "presets": [

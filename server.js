@@ -12,7 +12,7 @@ import qs from 'qs';
 // we'll render React components
 import React from 'react';
 // we'll use this to render our app to an html string
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 // and these to match the url to routes and then render
 import { match, RouterContext } from 'react-router';
 // we'll wrap the app into a redux store provider
@@ -22,6 +22,8 @@ import { createStore } from 'redux';
 import rootReducer from './src/reducers';
 // we'll match each request url agains these routes
 import Routes from './src/components/Routes/Routes';
+import App from './src/App';
+import Html from './src/Html';
 
 //
 // ==========================================================
@@ -86,46 +88,35 @@ function handleRender(req, res, props) {
 	// Create a new Redux store instance
 	const store = createStore(rootReducer);
 
+	const css = new Set();
+	// Global (context) variables that can be easily accessed from any React component
+	// https://facebook.github.io/react/docs/context.html
+	const context = {
+		// Enables critical path CSS rendering
+		// https://github.com/kriasoft/isomorphic-style-loader
+		insertCss: (...styles) => {
+			// eslint-disable-next-line no-underscore-dangle
+			styles.forEach(style => css.add(style._getCss()));
+		},
+		// Pass the redux store
+		store
+	};
+
 	// Render our main app component, much like we do in index.jsx,
 	// instead of <Router> however we render <RouterContext>
-	const html = renderToString(
-		<Provider store={store}>
-			<RouterContext {...props}/>
-		</Provider>
+	const innerHtml = renderToString(
+		<App context={context}>
+			<RouterContext {...props} />
+		</App>
 	);
 
 	// Grab the initial state from our Redux store
 	const finalState = store.getState();
 
-	// Send the rendered page back to the client
-	res.send(renderFullPage(html, finalState));
-}
+	const html = renderToStaticMarkup(<Html html={innerHtml} state={finalState} />);
 
-function renderFullPage(html, preloadedState) {
-	return `
-    <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <meta content="ie=edge" http-equiv="x-ua-compatible">
-        <meta content="A starting point for new React & Redux based apps" name="description">
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
-        <meta content="INDEX, FOLLOW" name="robots">
-        <title>React Redux Boiler</title>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700" rel="stylesheet">
-        <link href="/assets/favicons/favicon.png" rel="icon" sizes="128x128" type="image/png">
-      </head>
-      <body>
-        <div id="app">${html}</div>
-        <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
-        </script>
-        <script src="manifest.js" type="text/javascript"></script>
-        <script src="vendor.js" type="text/javascript"></script>
-        <script src="style.js" type="text/javascript"></script>
-        <script src="app.js" type="text/javascript"></script>
-      </body>
-  </html>`;
+	// Send the rendered page back to the client
+	res.send(`<!doctype html>${html}`);
 }
 
 var PORT = process.env.PORT || 8080;

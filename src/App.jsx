@@ -1,7 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import Routes from './components/Routes/index';
 
 class App extends PureComponent {
 
@@ -13,7 +11,8 @@ class App extends PureComponent {
 				dispatch: PropTypes.func.isRequired,
 				getState: PropTypes.func.isRequired
 			}).isRequired
-		})
+		}),
+		children: PropTypes.element
 	}
 
 	static childContextTypes = {
@@ -26,10 +25,14 @@ class App extends PureComponent {
 	}
 
 	render() {
-		const { store } = this.props.context;
+		const { context: { store }, children } = this.props;
 		return (
+			// Provider component takes the store as a prop
+			// and stores it in context, making it available
+			// to any components that wish to connect to it
+			// (see connect() from 'react-redux')
 			<Provider store={store}>
-				<Router routes={Routes} history={browserHistory} />
+				{children}
 			</Provider>
 		);
 	}

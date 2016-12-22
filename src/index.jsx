@@ -1,7 +1,9 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
+import { Router, browserHistory } from 'react-router';
 import App from './App';
+import Routes from './components/Routes/index';
 import configureStore from './configureStore';
 
 const context = {
@@ -18,11 +20,9 @@ const context = {
 	store: configureStore()
 };
 
-// Provider component takes the store as a prop
-// and stores it in context, making it available
-// to any components that wish to connect to it
-// (see connect() from 'react-redux')
 render(
-	<App context={context} />,
+	<App context={context}>
+		<Router routes={Routes} history={browserHistory} />
+	</App>,
 	document.getElementById('app')
 );

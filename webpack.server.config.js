@@ -31,24 +31,15 @@ module.exports = merge(
 			}, {}),
 
 		resolve: {
-			extensions: ['', '.js', '.jsx']
+			extensions: ['', '.js', '.jsx'],
+			root: [ __dirname, PATHS.app ]
 		},
 
 		node: {
 			__filename: true,
 			__dirname: true
-		},
-
-		module: {
-			loaders: [
-				{
-					test: /\.(js|jsx)$/,
-					exclude: /node_modules/,
-					loader: 'babel-loader?presets[]=es2015&presets[]=react'
-				}
-			]
 		}
 	},
-
+	parts.loadJSX(__dirname),
 	parts.setupCSS(PATHS.style, PATHS.app)
 );

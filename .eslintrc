@@ -27,6 +27,7 @@
         "ignoreRefs": false,
         "allowArrowFunctions": false,
         "allowBind": false
-    }]
+    }],
+    "react/no-danger": 0
   }
 }

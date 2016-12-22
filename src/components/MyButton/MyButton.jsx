@@ -1,9 +1,9 @@
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import styles from './MyButton.less';
+import withStyles from 'decorators/withStyles';
+import s from './MyButton.less';
 
 const MyButton = () => (
-	<button className={styles.myButton}>My Button</button>
+	<button className={s.myButton}>My Button</button>
 );
 
-export default withStyles(styles)(MyButton);
+export default withStyles(s)(MyButton);
