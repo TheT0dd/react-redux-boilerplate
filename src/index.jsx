@@ -1,23 +1,28 @@
 import 'babel-polyfill';
 import React from 'react';
-import { Router, browserHistory } from 'react-router';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import InsertCss from './InsertCss';
-import Routes from './components/Routes/index';
+import App from './App';
 import configureStore from './configureStore';
 
-const store = configureStore();
+const context = {
+	// Enables critical path CSS rendering
+	// https://github.com/kriasoft/isomorphic-style-loader
+	insertCss: (...styles) => {
+		// eslint-disable-next-line no-underscore-dangle
+		const removeCss = styles.map(x => x._insertCss());
+		return () => {
+			removeCss.forEach(f => f());
+		};
+	},
+	// Initialize a new Redux store
+	store: configureStore()
+};
 
 // Provider component takes the store as a prop
 // and stores it in context, making it available
 // to any components that wish to connect to it
 // (see connect() from 'react-redux')
 render(
-	<InsertCss>
-		<Provider store={store}>
-			<Router routes={Routes} history={browserHistory} />
-		</Provider>
-	</InsertCss>,
+	<App context={context} />,
 	document.getElementById('app')
 );
