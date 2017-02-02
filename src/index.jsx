@@ -8,12 +8,14 @@ import { configureStore } from './helpers/redux';
 import { insertCss } from './helpers/isl';
 
 const context = {
+	// For isomorphic-style-loader
 	insertCss,
 	// Initialize a new Redux store
 	store: configureStore()
 };
 
 render(
+	// NOTE: context here is just a prop, not actual context
 	<App context={context}>
 		<Router routes={Routes} history={browserHistory} />
 	</App>,

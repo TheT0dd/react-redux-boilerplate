@@ -7,6 +7,9 @@ import React, {Component, PropTypes} from 'react';
 export const withStyles = (...styles) => {
 	return (BaseComponent) => {
 		return class StyledComponent extends Component {
+
+			// Get access to the context, so we may read insertCss
+			// NOTE: if we omit contextTypes, context will be an empty object 
 			static contextTypes = {
 				insertCss: PropTypes.func.isRequired
 			};

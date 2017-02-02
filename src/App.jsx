@@ -15,10 +15,12 @@ class App extends PureComponent {
 		children: PropTypes.element
 	}
 
+	// Declare we are about to store insertCss into context
 	static childContextTypes = {
 		insertCss: React.PropTypes.func
 	}
 
+	// Actually store insertCss into context
 	getChildContext() {
 		const { insertCss } = this.props.context;
 		return { insertCss };
