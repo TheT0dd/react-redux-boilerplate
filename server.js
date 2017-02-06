@@ -29,8 +29,15 @@ import Html from './src/Html';
 // ==========================================================
 //
 
-
+// create express app & socket.io server on top of it
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+// greet all new connections
+io.on('connection', function(socket) {
+	socket.emit('MESSAGE_SEND', {text: 'ahoy'});
+});
 
 // must be first!
 app.use(compression());
@@ -121,6 +128,6 @@ function handleRender(req, res, props) {
 
 var PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
+http.listen(PORT, () => {
 	console.log('Production Express server running at localhost:' + PORT);
 });
