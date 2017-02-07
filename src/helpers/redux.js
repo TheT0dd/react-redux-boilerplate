@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 import createSaga from 'redux-saga';
 import rootReducer from '../reducers';
@@ -26,10 +26,18 @@ export const configureStore = () => {
 	// Grab the state from a global injected into server-generated HTML
 	const preloadedState = window.__PRELOADED_STATE__;
 
-	const store = window.store = createStore(
+	// for chrome devtools to work
+	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+	const store = createStore(
+		// the root reducer
 		rootReducer,
-		preloadedState, // server generated state
-		applyMiddleware(...middlewares) // enhancer
+		// server generated state
+		preloadedState,
+		// enhancer (middleware composition)
+		composeEnhancers(
+			applyMiddleware(...middlewares)
+		) // enhancer
 	);
 
 	sagaMiddleware.run(rootSaga);
