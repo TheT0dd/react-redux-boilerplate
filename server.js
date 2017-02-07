@@ -1,3 +1,8 @@
+/*
+ * Simple production-like server w/ socket.io
+ * used to emulate a real production environment
+ */
+
 import express from 'express';
 import path from 'path';
 import compression from 'compression';

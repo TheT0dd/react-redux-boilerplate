@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
 // create socket & export it for other modules to import
-export const socket = io();
+export const socket = io(':8080');
 
 // socket.io event listeners are installed here
 export const addSocketListeners = (dispatch, getState) => {
