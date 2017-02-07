@@ -19,5 +19,5 @@ io.on('connection', function(socket) {
 var PORT = process.env.PORT || 8080;
 
 http.listen(PORT, () => {
-	console.log('Production Express server running at localhost:' + PORT);
+	console.log('Socket.io server running at localhost:' + PORT);
 });
