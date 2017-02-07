@@ -48,6 +48,18 @@ export function *toggleTodoAsync({ id }) {
 	});
 }
 
+// dummy saga that sends request to server over socket.io
+export function *dummySocketRequest(action) {
+	const response = yield call(api.dummySocketRequest, action);
+	// at this point 'response' holds the server response,
+	// we can do with it as we please (i.e. dispatch an action)
+	console.log('server responded: ', response);
+	// yield put({
+	// 	type: 'SOME_OTHER_ACTION',
+	// 	response: normalize(response)
+	// });
+}
+
 // Root Saga: single entry point to start all other Sagas at once
 export default function *rootSaga() {
 	yield [
@@ -60,6 +72,7 @@ export default function *rootSaga() {
 		// sagas to run at the same time
 		// NOTE: this resembles the Observable's mergeMap() operator
 		takeEvery('ADD_TODO_REQUEST', addTodoAsync),
-		takeEvery('TOGGLE_TODO_REQUEST', toggleTodoAsync)
+		takeEvery('TOGGLE_TODO_REQUEST', toggleTodoAsync),
+		takeEvery('DUMMY_SOCKET_REQUEST', dummySocketRequest)
 	];
 }

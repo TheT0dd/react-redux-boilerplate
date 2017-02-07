@@ -6,9 +6,14 @@
 var http = require('http').createServer();
 var io = require('socket.io')(http);
 
-// greet all new connections
+// listen for new connections
 io.on('connection', function(socket) {
+	// greet
 	socket.emit('MESSAGE_SEND', {text: 'ahoy'});
+	// listen for 'dummy' incoming events & send back ack
+	socket.on('dummy', function(data, fn) {
+		fn({ text:'Dummy request received' });
+	});
 });
 
 var PORT = process.env.PORT || 8080;

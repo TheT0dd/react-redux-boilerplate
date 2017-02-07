@@ -4,21 +4,12 @@ import createSaga from 'redux-saga';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 import { socket, addSocketListeners } from './socket.io';
-import createSocketIoMiddleware from 'redux-socket.io';
 
 export const configureStore = () => {
 	const middlewares = [];
 
 	const sagaMiddleware = createSaga();
-
-	function execute(action, emit, next, dispatch) {
-		console.log('caught socket.io related event');
-		next(action);
-	}
-	const socketIoMiddleware = createSocketIoMiddleware(socket, 'server/', execute);
-
 	middlewares.push(sagaMiddleware);
-	middlewares.push(socketIoMiddleware);
 	if (process.env.NODE_ENV !== 'production') {
 		middlewares.push(createLogger());
 	}
@@ -37,7 +28,7 @@ export const configureStore = () => {
 		// enhancer (middleware composition)
 		composeEnhancers(
 			applyMiddleware(...middlewares)
-		) // enhancer
+		)
 	);
 
 	sagaMiddleware.run(rootSaga);

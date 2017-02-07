@@ -25,3 +25,11 @@ export const addSocketListeners = (dispatch, getState) => {
 		dispatch(action);
 	});
 };
+
+// promisified socket request that resolves when server sends ack
+export const sendSocketRequest = (name, payload) =>
+	new Promise((resolve, reject) => {
+		socket.emit(name, payload, (response) => {
+			resolve(response);
+		});
+	});
