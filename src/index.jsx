@@ -3,8 +3,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import App from './App';
-import Routes from './components/Routes/index';
-import { configureStore } from './helpers/redux';
+import routes from './routes';
+import { configureStore } from './store';
 import { insertCss } from './helpers/isl';
 
 const context = {
@@ -17,7 +17,7 @@ const context = {
 render(
 	// NOTE: context here is just a prop, not actual context
 	<App context={context}>
-		<Router routes={Routes} history={browserHistory} />
+		<Router routes={routes} history={browserHistory} />
 	</App>,
 	document.getElementById('app')
 );

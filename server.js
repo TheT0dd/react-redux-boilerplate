@@ -24,9 +24,9 @@ import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 // we'll create a new store instance for each request
 import { createStore } from 'redux';
-import rootReducer from './src/reducers';
+import rootReducer from './src/store/reducers';
 // we'll match each request url agains these routes
-import Routes from './src/components/Routes/Routes';
+import Routes from './src/routes';
 import App from './src/App';
 import Html from './src/Html';
 

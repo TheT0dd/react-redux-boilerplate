@@ -25,7 +25,7 @@ module.exports = function karmaConfig (config) {
       // Needed because redux-saga requires generator support and phantomjs does not support them
       'node_modules/regenerator-runtime/runtime.js',
 
-      // Grab all files in the tests directory that contain _test.
+      // Grab all files in the tests directory
       'tests/**/*.js'
     ],
 

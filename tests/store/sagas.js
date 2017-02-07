@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { put, call } from 'redux-saga/effects';
-import { fetchTodosAsync, addTodoAsync, toggleTodoAsync } from '../../src/sagas';
-import * as schema from '../../src/sagas/schema';
-import * as api from '../../src/api';
+import { fetchTodosAsync, addTodoAsync, toggleTodoAsync } from '../../src/store/sagas';
+import * as schema from '../../src/store/schema';
+import * as api from '../../src/store/api';
 import { normalize } from 'normalizr';
 
 describe('sagas', () => {

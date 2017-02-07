@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 import createSaga from 'redux-saga';
-import rootReducer from '../reducers';
-import rootSaga from '../sagas';
-import { socket, addSocketListeners } from './socket.io';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
+import { socket, addSocketListeners } from '../helpers/socket.io';
 
 export const configureStore = () => {
 	const middlewares = [];

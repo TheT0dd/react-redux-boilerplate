@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import modal from '../../src/reducers/modal';
+import modal from '../../src/store/reducers/modal';
 
 describe('modal reducer', () => {
 	it('should return the initial state', () => {

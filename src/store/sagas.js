@@ -2,7 +2,7 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 import * as schema from './schema';
-import * as api from '../api';
+import * as api from './api';
 
 
 export function *fetchTodosAsync({ filter }) {

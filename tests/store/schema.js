@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import * as schema from '../../src/sagas/schema';
+import * as schema from '../../src/store/schema';
 import { Schema } from 'normalizr';
 
 describe('schema', () => {

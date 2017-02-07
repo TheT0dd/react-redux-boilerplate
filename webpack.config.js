@@ -95,6 +95,7 @@ switch (TARGET) {
 			{
 				devtool: 'inline-source-map'
 			},
+			parts.setupCSS(PATHS.style, PATHS.app),
 			parts.loadIsparta(PATHS.app),
 			parts.loadJSX(PATHS.test)
 		);

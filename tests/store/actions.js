@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import * as actions from '../../src/actions';
+import * as actions from '../../src/store/actions';
 
 
 describe('actions', () => {

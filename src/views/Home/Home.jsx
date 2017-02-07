@@ -2,7 +2,7 @@ import React from 'react';
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
-import { showModal, hideModal } from '../../actions';
+import { showModal, hideModal } from '../../store/actions';
 
 import MyButton from '../../components/MyButton';
 
