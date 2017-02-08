@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import rootReducer from '../../src/store/reducers';
-import modal from '../../src/store/reducers/modal';
-import todos from '../../src/store/reducers/todos';
+import modal from '../../src/store/modal/reducers';
+import todos from '../../src/store/todos/reducers';
 
 describe('root reducer', () => {
 	it('should be composed of modal and todos reducers', () => {

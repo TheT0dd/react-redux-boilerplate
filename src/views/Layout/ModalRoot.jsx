@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GreetModal from '../../components/Modals/GreetModal';
-import { hideModal } from '../../store/actions';
+import { hideModal } from '../../store/modal/actions';
 
 const MODAL_COMPONENTS = {
 	'GREET_MODAL': GreetModal

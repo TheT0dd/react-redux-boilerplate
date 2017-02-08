@@ -1,5 +1,5 @@
 import { v4 } from 'node-uuid';
-import { sendSocketRequest } from '../helpers/socket.io';
+import { sendSocketRequest } from '../../helpers/socket.io';
 
 // This is a fake in-memory implementation of something
 // that would be implemented by calling a REST server.
@@ -59,6 +59,7 @@ export const toggleTodo = (id) =>
 		todo.completed = !todo.completed;
 		return todo;
 	});
+
 
 export const dummySocketRequest = (action) =>
 	sendSocketRequest('dummy', action);
