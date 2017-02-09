@@ -48,7 +48,9 @@ const Header = () => (
 				</NavDropdown>
 			</Nav>
 			<Nav pullRight>
-				<NavItem eventKey={1} href="#">Link Right</NavItem>
+				<LinkContainer to="/login">
+					<NavItem eventKey={1}>Login</NavItem>
+				</LinkContainer>
 				<NavItem eventKey={2} href="#">Link Right</NavItem>
 			</Nav>
 		</Navbar.Collapse>
