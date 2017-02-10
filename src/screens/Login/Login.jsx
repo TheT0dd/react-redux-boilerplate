@@ -1,9 +1,11 @@
 import React from 'react';
-import LoginForm from '../../containers/LoginForm';
+import LoginForm from '../../components/Forms/LoginForm';
 
 
 const Login = () => (
-	<LoginForm />
+	<LoginForm onSubmit={(values) => {
+		console.log('From submitted succesfully', values);
+	}}/>
 );
 
 export default Login;
