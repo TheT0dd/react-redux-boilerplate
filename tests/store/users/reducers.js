@@ -67,13 +67,11 @@ describe('users reducer', () => {
 			const state = {};
 			const action = {
 				type: 'AUTH_SUCCESS',
-				response: {
-					username: 'test',
-					token: 'asdf'
-				}
+				userId: 'test',
+				token: 'asdf'
 			};
 			const nextState = {
-				username: 'test',
+				id: 'test',
 				token: 'asdf'
 			};
 			assert.deepEqual(owner(state, action), nextState);

@@ -1,8 +1,8 @@
 import io from 'socket.io-client';
 
 // create socket & export it for other modules to import
-// export const socket = io('http://192.168.1.7:9000');
-export const socket = io(':8080');
+export const socket = io('http://192.168.1.7:9000');
+// export const socket = io(':8080');
 
 // socket.io event listeners are installed here
 export const addSocketListeners = (dispatch, getState) => {
@@ -30,8 +30,12 @@ export const addSocketListeners = (dispatch, getState) => {
 // promisified socket request that resolves when server sends ack
 export const sendSocketRequest = (name, payload) => {
 	return new Promise((resolve, reject) => {
-		socket.emit(name, payload, (response) => {
-			resolve(response);
+		socket.emit(name, payload, (error, response) => {
+			if (error) {
+				reject({error, message: response});
+			} else {
+				resolve(response);
+			}
 		});
 	});
 };

@@ -3,12 +3,14 @@ import * as api from './api';
 import * as schema from './schema';
 import { normalize } from 'normalizr';
 
-export function *authRequesAsync({ username, password, token }) {
+export function *authRequesAsync(action) {
 	try {
-		const response = yield call(api.authRequest, { username, password, token });
+		const { logged_in, token, userId } = yield call(api.authRequest, action);
 		yield put({
 			type: 'AUTH_SUCCESS',
-			response: normalize(response, schema.user)
+			logged_in,
+			token,
+			userId
 		});
 	}
 	catch(error) {

@@ -8,10 +8,10 @@ import { required, email, minLength } from '../validators';
 const LoginForm = ({ handleSubmit, pristine, reset, submitting }) => (
 	<form onSubmit={handleSubmit}>
 		<Field
-			name="username"
+			name="email"
 			type="text"
 			component={renderField}
-			label="Username"
+			label="Email"
 			validate={[ required, email ]}/>
 		<Field
 			name="password"
