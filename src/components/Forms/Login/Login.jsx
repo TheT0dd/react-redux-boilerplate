@@ -14,16 +14,11 @@ const LoginForm = ({ handleSubmit, pristine, reset, submitting }) => (
 			label="Username"
 			validate={[ required, email ]}/>
 		<Field
-			name="email"
-			type="text"
+			name="password"
+			type="password"
 			component={renderField}
-			label="Email"
-			validate={[ required, email ]} />
-		<Field
-			name="bio"
-			component={renderTextarea}
-			label="Bio"
-			validate={[ required, minLength(10) ]} />
+			label="Password"
+			validate={[ required ]} />
 		<div>
 			<Button type="submit" bsStyle="primary" disabled={pristine || submitting}>Submit</Button>
 			<Button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</Button>

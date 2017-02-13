@@ -14,6 +14,9 @@ io.on('connection', function(socket) {
 	socket.on('dummy', function(data, fn) {
 		fn({ text:'Dummy request received' });
 	});
+	socket.on('auth', function(data, fn) {
+		fn({ username: 'dummy_user', token: 'asdf' });
+	});
 });
 
 var PORT = process.env.PORT || 8080;
